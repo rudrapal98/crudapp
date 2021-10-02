@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 
@@ -14,6 +16,7 @@ $update=false;
 $name="";
 $location="";
 
+// Inserting a new record
 if(isset($_POST['save'])){
     $name = $_POST['name'];
     $location = $_POST['location'];
@@ -27,6 +30,9 @@ if(isset($_POST['save'])){
     header("location: index.php");
 }
 
+
+//Deleting an existing record
+
 if(isset($_GET['delete'])){
     $id = $_GET['delete'];
     $mysqli->query("DELETE FROM data WHERE id=$id") or die($mysqli->error);
@@ -37,6 +43,9 @@ if(isset($_GET['delete'])){
     header("location: index.php");
 }
 
+
+//Accessing the record which is to be edited
+
 if(isset($_GET['edit'])){
     $id = $_GET['edit'];
     $update = true;
@@ -46,6 +55,9 @@ if(isset($_GET['edit'])){
         $name = $row['name'];
         $location = $row['location'];
 }
+
+
+//Updating a record
 
 if(isset($_POST['update'])){
     $id = $_POST['id'];
